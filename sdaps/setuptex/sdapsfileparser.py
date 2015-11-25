@@ -37,6 +37,8 @@ arg_index_re = re.compile(r'''^(?P<arg>[^\[]*)(\[(?P<index>([0-9]+\.)*[0-9]+)\])
 def get_index_and_string(string):
     match = index_re.match(string)
     if match is None:
+        if string.startswith('XAUTO. '):
+            return None, string[7:]
         return None, string
 
     string = match.group('string')
